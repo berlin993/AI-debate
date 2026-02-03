@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Debate Arena</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Spectator Mode</p>
+          <h1>AI Debate Arena</h1>
+          <p class="subhead">Two agents. Two viewpoints. You decide the rules and pace.</p>
+        </div>
+        <div class="status">
+          <span class="dot" id="statusDot"></span>
+          <span id="statusLabel">Idle</span>
+        </div>
+      </header>
+
+      <section class="controls">
+        <div class="control-block">
+          <h2>Session</h2>
+          <div class="row">
+            <label>
+              Debate topic
+              <input id="topicInput" type="text" placeholder="e.g., AI and human creativity" />
+            </label>
+            <label>
+              Tone
+              <select id="toneSelect">
+                <option value="balanced" selected>Balanced</option>
+                <option value="adversarial">Adversarial</option>
+                <option value="curious">Curious</option>
+                <option value="formal">Formal</option>
+              </select>
+            </label>
+            <label>
+              Turn limit
+              <input id="turnLimit" type="number" min="2" max="50" value="12" />
+            </label>
+          </div>
+          <label class="wide">
+            Debate instructions (applies to both agents)
+            <textarea id="globalInstruction" rows="3" placeholder="Be concise, cite reasoning, avoid personal attacks."></textarea>
+          </label>
+          <div class="actions">
+            <button class="primary" id="startBtn">Start</button>
+            <button class="ghost" id="nextBtn" disabled>Next Turn</button>
+            <button class="danger" id="stopBtn" disabled>Stop</button>
+          </div>
+        </div>
+
+        <div class="control-block">
+          <h2>Agent 1</h2>
+          <div class="row">
+            <label>
+              Name
+              <input id="agent1Name" type="text" value="Astra" />
+            </label>
+            <label>
+              Provider
+              <select id="agent1Provider">
+                <option value="gemini" selected>Gemini</option>
+                <option value="mock">Mock</option>
+              </select>
+            </label>
+          </div>
+          <label class="wide">
+            Side instruction
+            <textarea id="agent1Instruction" rows="3" placeholder="You argue for the optimistic view."></textarea>
+          </label>
+          <div class="row">
+            <label>
+              Model
+              <input id="agent1Model" type="text" placeholder="e.g., gemini-2.5-flash" />
+            </label>
+            <label>
+              API key
+              <input id="agent1Key" type="password" placeholder="Use a proxy in production" />
+            </label>
+          </div>
+        </div>
+
+        <div class="control-block">
+          <h2>Agent 2</h2>
+          <div class="row">
+            <label>
+              Name
+              <input id="agent2Name" type="text" value="Nyx" />
+            </label>
+            <label>
+              Provider
+              <select id="agent2Provider">
+                <option value="gemini" selected>Gemini</option>
+                <option value="mock">Mock</option>
+              </select>
+            </label>
+          </div>
+          <label class="wide">
+            Side instruction
+            <textarea id="agent2Instruction" rows="3" placeholder="You argue for the skeptical view."></textarea>
+          </label>
+          <div class="row">
+            <label>
+              Model
+              <input id="agent2Model" type="text" placeholder="e.g., gemini-2.5-flash" />
+            </label>
+            <label>
+              API key
+              <input id="agent2Key" type="password" placeholder="Use a proxy in production" />
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="chat">
+        <div class="chat-header">
+          <h2>Debate Feed</h2>
+          <div class="turns"><span id="turnCount">0</span>/<span id="turnLimitLabel">12</span> turns</div>
+        </div>
+        <div class="chat-body" id="chatBody"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
